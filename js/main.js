@@ -1,69 +1,75 @@
 "use strict";
 
-let menu = document.getElementById("menu");
-let o = document.getElementById("o");
-let x = document.getElementById("x");
-let board = document.getElementById("board");
-let a1 = document.getElementById("a1");
-let a2 = document.getElementById("a2");
-let a3 = document.getElementById("a3");
-let b1 = document.getElementById("b1");
-let b2 = document.getElementById("b2");
-let b3 = document.getElementById("b3");
-let c1 = document.getElementById("c1");
-let c2 = document.getElementById("c2");
-let c3 = document.getElementById("c3");
 let p1 = "";
 let p2 = "";
 let turn = "p1";
+let message = document.getElementById("message");
+let gameOver = false;
+let winningCombos = [
+  [a1, a2, a3],
+  [b1, b2, b3],
+  [c1, c2, c3],
+  [a1, b1, c1],
+  [a2, b2, c2],
+  [a3, b3, c3],
+  [a1, b2, c3],
+  [c1, b2, a3]
+];
 
-o.addEventListener("click", function() {
-  p1 = "O";
-  p2 = "X";
-	menu.style.display = "none";
-	board.style.display = "initial";
+["x", "o"].forEach(function (piece) {
+  selectPiece(document.getElementById(piece), piece);
 });
 
-x.addEventListener("click", function() {
-  p1 = "X";
-  p2 = "O";
-	menu.style.display = "none";
-	board.style.display = "initial";
-});
+["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"]
+  .forEach(function (position) {
+    whenClick(document.getElementById(position));
+  });
 
-a1.addEventListener("click", function() {
-	a1.innerText = turn === "p1" ? p1 : p2;
-  turn = turn === "p1" ? "p2" : "p1";
-});
-a2.addEventListener("click", function() {
-  a2.innerText = turn === "p1" ? p1 : p2;
-  turn = turn === "p1" ? "p2" : "p1";
-});
-a3.addEventListener("click", function() {
-  a3.innerText = turn === "p1" ? p1 : p2;
-  turn = turn === "p1" ? "p2" : "p1";
-});
-b1.addEventListener("click", function() {
-  b1.innerText = turn === "p1" ? p1 : p2;
-  turn = turn === "p1" ? "p2" : "p1";
-});
-b2.addEventListener("click", function() {
-  b2.innerText = turn === "p1" ? p1 : p2;
-  turn = turn === "p1" ? "p2" : "p1";
-});
-b3.addEventListener("click", function() {
-  b3.innerText = turn === "p1" ? p1 : p2;
-  turn = turn === "p1" ? "p2" : "p1";
-});
-c1.addEventListener("click", function() {
-  c1.innerText = turn === "p1" ? p1 : p2;
-  turn = turn === "p1" ? "p2" : "p1";
-});
-c2.addEventListener("click", function() {
-  c2.innerText = turn === "p1" ? p1 : p2;
-  turn = turn === "p1" ? "p2" : "p1";
-});
-c3.addEventListener("click", function() {
-  c3.innerText = turn === "p1" ? p1 : p2;
-  turn = turn === "p1" ? "p2" : "p1";
-});
+function selectPiece(piece, symbol) {
+  piece.addEventListener("click", function () {
+    p1 = symbol.toUpperCase();
+    p2 = p1 === "X" ? "O" : "X";
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("game").style.display = "initial";
+  });
+}
+
+function whenClick(position) {
+  position.addEventListener("click", function () {
+    if (position.innerText === "" && !gameOver) {
+      position.innerText = turn === "p1" ? p1 : p2;
+      turn = turn === "p1" ? "p2" : "p1";
+      message.innerText = turn === "p1" ? "Player 1" : "Player 2";
+      checkForWinner();
+      checkForDraw();
+    }
+  });
+}
+
+function checkForWinner() {
+  winningCombos.forEach(function (combo) {
+    let result = "";
+
+    combo.forEach(function (position) {
+      result += position.innerText;
+    });
+
+    if (result === "XXX") declareWinner("X");
+    if (result === "OOO") declareWinner("O");
+  });
+}
+
+function declareWinner(winner) {
+  message.innerText = p1 === winner ? "PLAYER 1 WINS!" : "PLAYER 2 WINS!";
+  gameOver = true;
+}
+
+function checkForDraw() {
+  let draw = true;
+
+  [a1, a2, a3, b1, b2, b3, c1, c2, c3].forEach(function (position) {
+    if (position.innerText === "") draw = false;
+  });
+
+  if (draw && !gameOver) message.innerText = "IT'S A DRAW!";
+}
