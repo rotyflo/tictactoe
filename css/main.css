@@ -7,8 +7,13 @@ button {
   border-style: none;
 }
 
-#game {
+#game, #replay {
   display: none;
+}
+
+#replay {
+  height: 50px;
+  font-size: 20px;
 }
 
 #board {

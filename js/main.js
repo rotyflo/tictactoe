@@ -4,6 +4,9 @@ let p1 = "";
 let p2 = "";
 let turn = "p1";
 let message = document.getElementById("message");
+let replay = document.getElementById("replay");
+let positionsNames = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"];
+let positionsFunctions = [a1, a2, a3, b1, b2, b3, c1, c2, c3];
 let gameOver = false;
 let winningCombos = [
   [a1, a2, a3],
@@ -20,10 +23,19 @@ let winningCombos = [
   selectPiece(document.getElementById(piece), piece);
 });
 
-["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"]
-  .forEach(function (position) {
+positionsNames.forEach(function (position) {
     whenClick(document.getElementById(position));
+});
+
+replay.addEventListener("click", function() {
+  positionsFunctions.forEach(function(position) {
+    position.innerText = "";
   });
+  gameOver = false;
+  turn = "p1";
+  message.innerText = "Player 1";
+  replay.style.display = "none";
+});
 
 function selectPiece(piece, symbol) {
   piece.addEventListener("click", function () {
@@ -62,14 +74,18 @@ function checkForWinner() {
 function declareWinner(winner) {
   message.innerText = p1 === winner ? "PLAYER 1 WINS!" : "PLAYER 2 WINS!";
   gameOver = true;
+  replay.style.display = "initial";
 }
 
 function checkForDraw() {
   let draw = true;
 
-  [a1, a2, a3, b1, b2, b3, c1, c2, c3].forEach(function (position) {
+  positionsFunctions.forEach(function (position) {
     if (position.innerText === "") draw = false;
   });
 
-  if (draw && !gameOver) message.innerText = "IT'S A DRAW!";
+  if (draw && !gameOver) {
+    message.innerText = "IT'S A DRAW!";
+    replay.style.display = "initial";
+  }
 }
