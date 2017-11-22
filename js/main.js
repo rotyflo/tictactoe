@@ -8,6 +8,7 @@ let replay = document.getElementById("replay");
 let positionsNames = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"];
 let positionsFunctions = [a1, a2, a3, b1, b2, b3, c1, c2, c3];
 let gameOver = false;
+let pvp = document.getElementById("pvp");
 let winningCombos = [
   [a1, a2, a3],
   [b1, b2, b3],
@@ -24,13 +25,14 @@ let winningCombos = [
 });
 
 positionsNames.forEach(function (position) {
-    whenClick(document.getElementById(position));
+  whenClick(document.getElementById(position));
 });
 
-replay.addEventListener("click", function() {
-  positionsFunctions.forEach(function(position) {
+replay.addEventListener("click", function () {
+  positionsFunctions.forEach(function (position) {
     position.innerText = "";
   });
+
   gameOver = false;
   turn = "p1";
   message.innerText = "Player 1";
@@ -41,6 +43,7 @@ function selectPiece(piece, symbol) {
   piece.addEventListener("click", function () {
     p1 = symbol.toUpperCase();
     p2 = p1 === "X" ? "O" : "X";
+
     document.getElementById("menu").style.display = "none";
     document.getElementById("game").style.display = "initial";
   });
@@ -51,7 +54,23 @@ function whenClick(position) {
     if (position.innerText === "" && !gameOver) {
       position.innerText = turn === "p1" ? p1 : p2;
       turn = turn === "p1" ? "p2" : "p1";
-      message.innerText = turn === "p1" ? "Player 1" : "Player 2";
+
+      checkForWinner();
+      checkForDraw();
+
+      if (gameOver === false) {
+        // TWO PLAYER
+        if (pvp.checked) {
+          message.innerText = turn === "p1" ? "Player 1" : "Player 2";
+        }
+        // VS COMPUTER
+        else {
+          if (turn === "p2") {
+            computersTurn();
+          }
+        }
+      }
+
       checkForWinner();
       checkForDraw();
     }
@@ -72,7 +91,13 @@ function checkForWinner() {
 }
 
 function declareWinner(winner) {
-  message.innerText = p1 === winner ? "PLAYER 1 WINS!" : "PLAYER 2 WINS!";
+  if (pvp.checked) {
+    message.innerText = p1 === winner ? "PLAYER 1 WINS!" : "PLAYER 2 WINS!";
+  }
+  else {
+    message.innerText = p1 === winner ? "PLAYER 1 WINS!" : "COMPUTER WINS!";
+  }
+
   gameOver = true;
   replay.style.display = "initial";
 }
@@ -88,4 +113,103 @@ function checkForDraw() {
     message.innerText = "IT'S A DRAW!";
     replay.style.display = "initial";
   }
+}
+
+// IF OPPENENT ABOUT TO WIN
+// STOP THEM!
+// IF COMP ABOUT TO WIN
+// WIN
+// IF !B2                         positionsFunctions[4].innerText === ""
+// B2
+// IF P2 = B2                     positionsFunctions[4].innerText === p2
+// A2, B1, B3, C2
+// IF P1 = B2                     positionsFunctions[4].innerText === p1
+// A1, A3, C1, C3
+
+// ""
+
+function computersTurn() {
+  let moved = false;
+
+  winningCombos.forEach(function (combo) {
+    if (!moved) {
+      let result = "";
+
+      combo.forEach(function (position) {
+        result += position.innerText === "" ? " " : position.innerText;
+      });
+
+      switch (result) {
+        case " XX":
+          combo[0].innerText = p2;
+          moved = true;
+          break;
+
+        case "X X":
+          combo[1].innerText = p2;
+          moved = true;
+          break;
+
+        case "XX ":
+          combo[2].innerText = p2;
+          moved = true;
+          break;
+
+        case " OO":
+          combo[0].innerText = p2;
+          moved = true;
+          break;
+
+        case "O O":
+          combo[1].innerText = p2;
+          moved = true;
+          break;
+
+        case "OO ":
+          combo[2].innerText = p2;
+          moved = true;
+          break;
+      }
+    }
+  });
+
+  if (!moved) {
+    switch (b2.innerText) {
+      case "":
+        b2.innerText = p2;
+        break;
+
+      case p2:
+        if (a2.innerText === "") a2.innerText = p2;
+        else if (b1.innerText === "") b1.innerText = p2;
+        else if (b3.innerText === "") b3.innerText = p2;
+        else if (c2.innerText === "") c2.innerText = p2;
+        else {
+          for (let i = 0; !moved; i++) {
+            if (positionsFunctions[i].innerText === "") {
+              positionsFunctions[i].innerText = p2;
+              moved = true;
+            }
+          }
+        }
+        break;
+
+      case p1:
+        if (a1.innerText === "") a1.innerText = p2;
+        else if (a3.innerText === "") a3.innerText = p2;
+        else if (c1.innerText === "") c1.innerText = p2;
+        else if (c3.innerText === "") c3.innerText = p2;
+        else {
+          for (let i = 0; !moved; i++) {
+            if (positionsFunctions[i].innerText === "") {
+              positionsFunctions[i].innerText = p2;
+              moved = true;
+            }
+          }
+        }
+        break;
+    }
+  }
+
+  turn = "p1";
 }
