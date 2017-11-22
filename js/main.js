@@ -115,19 +115,6 @@ function checkForDraw() {
   }
 }
 
-// IF OPPENENT ABOUT TO WIN
-// STOP THEM!
-// IF COMP ABOUT TO WIN
-// WIN
-// IF !B2                         positionsFunctions[4].innerText === ""
-// B2
-// IF P2 = B2                     positionsFunctions[4].innerText === p2
-// A2, B1, B3, C2
-// IF P1 = B2                     positionsFunctions[4].innerText === p1
-// A1, A3, C1, C3
-
-// ""
-
 function computersTurn() {
   let moved = false;
 
