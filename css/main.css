@@ -1,10 +1,25 @@
 body {
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 button {
   background-color: #bbb;
   border-style: none;
+}
+
+label {
+  padding: 4px 16px;
+  cursor: pointer;
+}
+
+#pvc-button {
+  background-color: #bbb;
+  color: white;
+}
+
+input {
+  display: none;
 }
 
 #game, #replay {
