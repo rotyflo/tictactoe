@@ -3,12 +3,15 @@
 let p1 = "";
 let p2 = "";
 let turn = "p1";
+let first = "p1";
 let message = document.getElementById("message");
 let replay = document.getElementById("replay");
 let positionsNames = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"];
 let positionsFunctions = [a1, a2, a3, b1, b2, b3, c1, c2, c3];
 let gameOver = false;
 let pvp = document.getElementById("pvp");
+let pvcButton = document.getElementById("pvc-button");
+let pvpButton = document.getElementById("pvp-button");
 let winningCombos = [
   [a1, a2, a3],
   [b1, b2, b3],
@@ -19,6 +22,20 @@ let winningCombos = [
   [a1, b2, c3],
   [c1, b2, a3]
 ];
+
+pvcButton.addEventListener("click", function() {
+  pvcButton.style.backgroundColor = "#bbb";
+  pvcButton.style.color = "white";
+  pvpButton.style.backgroundColor = "white";
+  pvpButton.style.color = "black";
+});
+
+pvpButton.addEventListener("click", function() {
+  pvpButton.style.backgroundColor = "#bbb";
+  pvpButton.style.color = "white";
+  pvcButton.style.backgroundColor = "white";
+  pvcButton.style.color = "black";
+});
 
 ["x", "o"].forEach(function (piece) {
   selectPiece(document.getElementById(piece), piece);
@@ -33,9 +50,23 @@ replay.addEventListener("click", function () {
     position.innerText = "";
   });
 
+  first = first === "p1" ? "p2" : "p1";
+
+  if (first === "p2") {
+    if (pvp.checked) {
+      turn = "p2";
+      message.innerText = "Player 2";
+    } else {
+      computersTurn();
+      turn = "p1";
+      message.innerText = "Player 1";
+    }
+  } else {
+    turn = "p1";
+    message.innerText = "Player 1";
+  }
+
   gameOver = false;
-  turn = "p1";
-  message.innerText = "Player 1";
   replay.style.display = "none";
 });
 
@@ -66,7 +97,7 @@ function whenClick(position) {
         // VS COMPUTER
         else {
           if (turn === "p2") {
-            computersTurn();
+              computersTurn();
           }
         }
       }
@@ -128,30 +159,18 @@ function computersTurn() {
 
       switch (result) {
         case " XX":
-          combo[0].innerText = p2;
-          moved = true;
-          break;
-
-        case "X X":
-          combo[1].innerText = p2;
-          moved = true;
-          break;
-
-        case "XX ":
-          combo[2].innerText = p2;
-          moved = true;
-          break;
-
         case " OO":
           combo[0].innerText = p2;
           moved = true;
           break;
 
+        case "X X":
         case "O O":
           combo[1].innerText = p2;
           moved = true;
           break;
 
+        case "XX ":
         case "OO ":
           combo[2].innerText = p2;
           moved = true;
