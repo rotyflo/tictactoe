@@ -24,17 +24,17 @@ let winningCombos = [
 ];
 
 pvcButton.addEventListener("click", function() {
-  pvcButton.style.backgroundColor = "#bbb";
-  pvcButton.style.color = "white";
-  pvpButton.style.backgroundColor = "white";
-  pvpButton.style.color = "black";
+  pvcButton.style.backgroundColor = "#CCC";
+  pvcButton.style.color = "#333";
+  pvpButton.style.backgroundColor = "#333";
+  pvpButton.style.color = "#CCC";
 });
 
 pvpButton.addEventListener("click", function() {
-  pvpButton.style.backgroundColor = "#bbb";
-  pvpButton.style.color = "white";
-  pvcButton.style.backgroundColor = "white";
-  pvcButton.style.color = "black";
+  pvpButton.style.backgroundColor = "#CCC";
+  pvpButton.style.color = "#333";
+  pvcButton.style.backgroundColor = "#333";
+  pvcButton.style.color = "#CCC";
 });
 
 ["x", "o"].forEach(function (piece) {
