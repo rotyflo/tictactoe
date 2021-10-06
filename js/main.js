@@ -23,20 +23,6 @@ let winningCombos = [
   [c1, b2, a3]
 ];
 
-pvcButton.addEventListener("click", function() {
-  pvcButton.style.backgroundColor = "#CCC";
-  pvcButton.style.color = "#333";
-  pvpButton.style.backgroundColor = "#333";
-  pvpButton.style.color = "#CCC";
-});
-
-pvpButton.addEventListener("click", function() {
-  pvpButton.style.backgroundColor = "#CCC";
-  pvpButton.style.color = "#333";
-  pvcButton.style.backgroundColor = "#333";
-  pvcButton.style.color = "#CCC";
-});
-
 ["x", "o"].forEach(function (piece) {
   selectPiece(document.getElementById(piece), piece);
 });

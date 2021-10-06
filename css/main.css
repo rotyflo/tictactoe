@@ -1,4 +1,70 @@
+@import url("https://rotyflo.github.io/css/terminal.css");
+
 body {
+  text-align: center;
+}
+
+h1 {
+  display: inline-block;
+}
+
+#menu input {
+  display: none;
+}
+
+#menu label {
+  padding: 8px 16px;
+  width: 70px;
+  margin: auto 0;
+  cursor: pointer;
+}
+
+#menu input + label {
+  border: none;
+}
+
+#menu input:checked + label {
+  border: solid black 1px;
+}
+
+#board button {
+  height: 100px;
+  width: 100px;
+  background-color: white;
+  border: solid black 1px;
+  cursor: pointer;
+  font-size: 50px;
+}
+
+#board #a1 {
+  border-top: none;
+  border-left: none;
+}
+#board #a2 {
+  border-top: none;
+}
+#board #a3 {
+  border-top: none;
+  border-right: none;
+}
+#board #b1 {
+  border-left: none;
+}
+#board #b3 {
+  border-right: none;
+}
+#board #c1 {
+  border-bottom: none;
+  border-left: none;
+}
+#board #c2 {
+  border-bottom: none;
+}
+#board #c3 {
+  border-bottom: none;
+  border-right: none;
+}
+/* body {
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #333;
@@ -37,4 +103,4 @@ td, button {
   background-color: #CCC;
   cursor: pointer; }
 
-/*# sourceMappingURL=main.css.map */
+# sourceMappingURL=main.css.map */
