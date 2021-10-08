@@ -8,23 +8,8 @@ h1 {
   display: inline-block;
 }
 
-#menu input {
-  display: none;
-}
-
-#menu label {
-  padding: 8px 16px;
-  width: 70px;
-  margin: auto 0;
-  cursor: pointer;
-}
-
-#menu input + label {
-  border: none;
-}
-
-#menu input:checked + label {
-  border: solid black 1px;
+input {
+  max-width: 300px;
 }
 
 #board .btn {
@@ -66,43 +51,3 @@ h1 {
   border-bottom: none;
   border-right: none;
 }
-/* body {
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #333;
-  color: #CCC; }
-
-button {
-  border-style: none; }
-
-label {
-  padding: 4px 16px;
-  cursor: pointer; }
-
-#pvc-button {
-  background-color: #CCC;
-  color: #333; }
-
-input {
-  display: none; }
-
-#game, #replay {
-  display: none; }
-
-#replay {
-  height: 50px;
-  font-size: 20px; }
-
-#board {
-  margin: 20px auto; }
-
-td, button {
-  font-family: arial;
-  height: 100px;
-  width: 100px;
-  font-size: 50px;
-  color: #333;
-  background-color: #CCC;
-  cursor: pointer; }
-
-# sourceMappingURL=main.css.map */

@@ -7,67 +7,53 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Tic Tac Toe</title>
 
-  <link rel="stylesheet" href="https://unpkg.com/pyloncss@latest/css/pylon.css" />
   <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body class="container">
-  <h1>Tic Tac Toe</h1>
+  <header>
+    <h1>Tic Tac Toe</h1>
+  </header>
 
-  <div id="menu">
-    <p>Players</p>
-    <div id="gamemode">
-      <hstack align-x=center>
-      <input id="pvc" type="radio" name="gamemode" value="1" checked>
-      <label id="pvc-button" for="pvc">1</label>
+  <main>
+    <div id="game" hidden>
+      <p id="message">Welcome!</p>
+      <vstack id="board">
+        <hstack align-x=center>
+          <button id="a1" class="btn"></button>
+          <button id="a2" class="btn"></button>
+          <button id="a3" class="btn"></button>
+        </hstack>
+        <hstack align-x=center>
+          <button id="b1" class="btn"></button>
+          <button id="b2" class="btn"></button>
+          <button id="b3" class="btn"></button>
+        </hstack>
+        <hstack align-x=center>
+          <button id="c1" class="btn"></button>
+          <button id="c2" class="btn"></button>
+          <button id="c3" class="btn"></button>
+        </hstack>
+      </vstack>
 
-      <input id="pvp" type="radio" name="gamemode" value="2">
-      <label id="pvp-button" for="pvp">2</label>
-      </hstack>
+      <br>
+      <button id="replay" class="btn btn-default">Replay</button>
     </div>
 
-    <br><br>
+    <div id="settings">
+      <vstack align-x=center>
+        <input type="text" id="playerone" name="playerone" placeholder="Player X Name">
+        <input type="text" id="playertwo" name="playertwo" placeholder="Player O Name">
 
-    <p>Piece</p>
-    <div id="gamepiece">
-      <hstack align-x=center>
-      <input id="o" type="radio" name="gamepiece" checked>
-      <label for="o">O</label>
-
-      <input id="x" type="radio" name="gamepiece">
-      <label for="x">X</label>
-      </hstack>
+        <input type="button" id="start-button" value="Start Game" class="btn btn-primary">
+      </vstack>
     </div>
+  </main>
 
-    <br><br>
-    <button id="start-button" value="start" class="btn btn-default">Start</button>
-  </div>
 
-  <div id="game" hidden>
-    <p id="message">Player 1</p>
-    <vstack id="board">
-      <hstack align-x=center>
-        <button id="a1" class="btn"></button>
-        <button id="a2" class="btn"></button>
-        <button id="a3" class="btn"></button>
-      </hstack>
-      <hstack align-x=center>
-        <button id="b1" class="btn"></button>
-        <button id="b2" class="btn"></button>
-        <button id="b3" class="btn"></button>
-      </hstack>
-      <hstack align-x=center>
-        <button id="c1" class="btn"></button>
-        <button id="c2" class="btn"></button>
-        <button id="c3" class="btn"></button>
-      </hstack>
-    </vstack>
-
-    <br>
-    <button id="replay" class="btn btn-default" hidden>Replay</button>
-  </div>
-
-  <script src="js/main.js"></script>
+  <footer>
+    <script src="js/main.js"></script>
+  </footer>
 </body>
 
 </html>
