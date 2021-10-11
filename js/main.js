@@ -30,6 +30,14 @@ let players = {
   }
 }
 
+document.getElementById("playerone").addEventListener("keyup", (pressed) => {
+  if (pressed.key === "Enter") startGame();
+});
+
+document.getElementById("playertwo").addEventListener("keyup", (pressed) => {
+  if (pressed.key === "Enter") startGame();
+});
+
 document.getElementById("start-button").addEventListener("click", () => {
   startGame();
 });
