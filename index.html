@@ -18,35 +18,26 @@
   <main>
     <div id="game" hidden>
       <p id="message">Welcome!</p>
-      <vstack id="board">
-        <hstack align-x=center>
-          <button id="a1" class="btn"></button>
-          <button id="a2" class="btn"></button>
-          <button id="a3" class="btn"></button>
-        </hstack>
-        <hstack align-x=center>
-          <button id="b1" class="btn"></button>
-          <button id="b2" class="btn"></button>
-          <button id="b3" class="btn"></button>
-        </hstack>
-        <hstack align-x=center>
-          <button id="c1" class="btn"></button>
-          <button id="c2" class="btn"></button>
-          <button id="c3" class="btn"></button>
-        </hstack>
-      </vstack>
+      <div id="board">
+        <button id="a1" class="btn"></button>
+        <button id="a2" class="btn"></button>
+        <button id="a3" class="btn"></button>
+        <button id="b1" class="btn"></button>
+        <button id="b2" class="btn"></button>
+        <button id="b3" class="btn"></button>
+        <button id="c1" class="btn"></button>
+        <button id="c2" class="btn"></button>
+        <button id="c3" class="btn"></button>
+      </div>
 
       <br>
       <button id="replay" class="btn btn-default">Replay</button>
     </div>
 
     <div id="settings">
-      <vstack align-x=center spacing=xxs>
         <input type="text" id="playerone" name="playerone" placeholder="Player X Name">
         <input type="text" id="playertwo" name="playertwo" placeholder="Player O Name">
-
         <input type="button" id="start-button" value="Start Game" class="btn btn-primary">
-      </vstack>
     </div>
   </main>
 
